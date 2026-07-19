@@ -16,7 +16,7 @@ const continueBtn = document.getElementById("continueBtn");
 const restartBtn = document.getElementById("restartBtn");
 const resultModal = document.getElementById("resultModal");
 const winModal = document.getElementById("winModal");
-const goToPuzzleBtn = document.getElementById("goToPuzzleBtn");
+const goToQuizBtn = document.getElementById("goToQuizBtn");
 const winSurpriseBtn = document.getElementById("winSurpriseBtn");
 const resetPuzzleBtn = document.getElementById("resetPuzzleBtn");
 
@@ -36,28 +36,27 @@ function sendTelegramMessage(text) {
 
 const quizData = [
   {
-    type: "mcq",
+    type: "text",
     question: "What does I do the most? 🤔",
-    options: ["Sleeping 😴", "Overthinking 🧠", "Coding 💻", "Gaming 🎮"],
-    correct: 2
-  },
-  {
-    type: "mcq",
-    question: "What's special about Me?",
-    options: ["Boring", "Awkward", "Happy & Special ❤️", "Strange"],
-    correct: 2
-  },
-  {
-    type: "mcq",
-    question: "What is the bond between us? 🤝",
-    options: ["Brother Sister by Love", "A Best Brother & Sister", "Brother-Sister by Heart ❤️", "Best Friends"],
-    correct: 2
+    placeholder: "Type what you think I do the most Didi..."
   },
   {
     type: "text",
-    question: "What is one special message or memory you want to say to me? 💬"
+    question: "What's special about Me? 💭",
+    placeholder: "Type what you think is special about me..."
+  },
+  {
+    type: "text",
+    question: "What is the bond between us? 🤝",
+    placeholder: "Type what our bond means to you..."
+  },
+  {
+    type: "text",
+    question: "What is one special message or memory you want to say to me? 💬",
+    placeholder: "Type your message here Didi..."
   }
 ];
+
 
 const photoCaptions = [
   "The Most Stylish Didi 😎",
@@ -70,89 +69,18 @@ let quizScore = 0;
 let currentQuestion = 0;
 let typedLetterInstance = null;
 let typedHeroInstance = null;
+let unlockedPhotosCount = 0;
+let letterScrollInterval = null;
 
 /* ==========================
-   AUTO-SCROLL CONTROLLER & INTERRUPT SYSTEM
+   SMOOTH SCROLL HELPER
 ========================== */
 
-let isAutoScrollEnabled = true;
-let autoScrollActive = false;
-let autoScrollAnimId = null;
-let touchResumeTimer = null;
-let currentPendingStep = null;
-
-function stopAutoScrollAnimation() {
-  if (autoScrollAnimId) {
-    cancelAnimationFrame(autoScrollAnimId);
-    autoScrollAnimId = null;
-  }
-  autoScrollActive = false;
-}
-
-function handleUserInteraction() {
-  if (!isAutoScrollEnabled) return;
-
-  stopAutoScrollAnimation();
-
-  if (touchResumeTimer) {
-    clearTimeout(touchResumeTimer);
-    touchResumeTimer = null;
-  }
-
-  touchResumeTimer = setTimeout(() => {
-    if (isAutoScrollEnabled && currentPendingStep) {
-      currentPendingStep();
-    }
-  }, 3000);
-}
-
-['touchstart', 'touchmove', 'wheel', 'mousedown'].forEach(evtName => {
-  window.addEventListener(evtName, handleUserInteraction, { passive: true });
-});
-
-function autoScrollTo(target, customDuration = null, callback = null) {
-  if (!isAutoScrollEnabled) return;
-
-  stopAutoScrollAnimation();
-
-  const targetElement = typeof target === 'string' ? document.getElementById(target) : target;
+function smoothScrollToSection(targetId) {
+  const targetElement = document.getElementById(targetId);
   if (!targetElement) return;
 
-  const targetY = targetElement.getBoundingClientRect().top + window.pageYOffset;
-  const startY = window.pageYOffset;
-  const distance = targetY - startY;
-
-  const calculatedDuration = Math.max(7500, Math.abs(distance) * 14);
-  const duration = typeof customDuration === 'number' ? customDuration : calculatedDuration;
-
-  currentPendingStep = () => autoScrollTo(target, duration, callback);
-
-  let startTime = null;
-  autoScrollActive = true;
-
-  function step(currentTime) {
-    if (!startTime) startTime = currentTime;
-    const timeElapsed = currentTime - startTime;
-    const progress = Math.min(timeElapsed / duration, 1);
-    
-    const easeProgress = 0.5 - Math.cos(progress * Math.PI) / 2;
-
-    window.scrollTo(0, startY + distance * easeProgress);
-
-    if (timeElapsed < duration) {
-      autoScrollAnimId = requestAnimationFrame(step);
-    } else {
-      autoScrollAnimId = null;
-      autoScrollActive = false;
-      if (callback) callback();
-    }
-  }
-
-  autoScrollAnimId = requestAnimationFrame(step);
-}
-
-function showPage(id) {
-  autoScrollTo(id, 6000);
+  targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 /* ==========================
@@ -172,7 +100,7 @@ window.addEventListener('load', () => {
 });
 
 /* ==========================
-   HERO TYPEWRITER & AUTO-FLOW
+   HERO TYPEWRITER
 ========================== */
 
 function startHeroTypewriter() {
@@ -182,80 +110,83 @@ function startHeroTypewriter() {
   typedHeroTarget.innerHTML = '';
   if (typedHeroInstance) typedHeroInstance.destroy();
 
-  const heroText = `Some bonds are not by blood...^600<br><br>They are by heart.^800<br><br>You are my Didi, not because we share the same blood,<br>but because we share the same soul. ❤️`;
+  const heroText = `So, Raksha Bandhan is finally here!^600<br><br>Here is a small gift, made with love, just for you...^800<br><br>Do you know why our bond is the best?<br>Because we share the same soul. ❤️`;
 
   try {
     typedHeroInstance = new Typed("#typedHero", {
       strings: [heroText],
       typeSpeed: 35,
       showCursor: true,
-      cursorChar: "✨",
-      onComplete: () => {
-        setTimeout(() => {
-          triggerScrapbookSequence();
-        }, 1500);
-      }
+      cursorChar: "✨"
     });
   } catch (e) {
-    typedHeroTarget.innerHTML = `Some bonds are not by blood...<br><br>They are by heart.<br><br>You are my Didi, not because we share the same blood,<br>but because we share the same soul. ❤️`;
-    setTimeout(() => {
-      triggerScrapbookSequence();
-    }, 2500);
+    typedHeroTarget.innerHTML = `So, Raksha Bandhan is finally here!<br><br>Here is a small gift, made with love, just for you...<br><br>Do you know why our bond is the best?<br>Because we share the same soul. ❤️`;
   }
 }
 
 /* ==========================
-   SCRAPBOOK UNBLUR SEQUENCE
+   SCRAPBOOK CLICK-TO-UNLOCK PHOTOS
 ========================== */
 
-function triggerScrapbookSequence() {
-  autoScrollTo("scrapbook", 8000, () => {
-    unblurPolaroidSequentially(0);
-  });
-}
+function setupClickToUnlockPhotos() {
+  const polaroidElements = document.querySelectorAll('.polaroid');
 
-function unblurPolaroidSequentially(index) {
-  if (index >= photoCaptions.length) {
-    setTimeout(() => {
-      autoScrollTo("quizSection", 8000);
-    }, 1200);
-    return;
-  }
+  polaroidElements.forEach((polaroid, index) => {
+    polaroid.addEventListener('click', () => {
+      if (!polaroid.classList.contains('locked')) return; // Already unlocked
 
-  const polaroid = document.getElementById(`polaroid-${index}`);
-  const captionEl = document.getElementById(`caption-${index}`);
-
-  if (polaroid) {
-    autoScrollTo(polaroid, 5000, () => {
+      // Remove locked state & add unblurring transition
       polaroid.classList.remove('locked');
       polaroid.classList.add('unblurring');
+
+      const lockOverlay = document.getElementById(`lock-${index}`);
+      if (lockOverlay) {
+        lockOverlay.classList.add('unlocked');
+      }
 
       setTimeout(() => {
         polaroid.classList.remove('unblurring');
         polaroid.classList.add('unlocked');
-      }, 1000);
+      }, 800);
 
-      if (captionEl) {
+      // Start live typewriter caption for this photo
+      const captionEl = document.getElementById(`caption-${index}`);
+      if (captionEl && photoCaptions[index]) {
+        captionEl.innerHTML = '';
         new Typed(`#caption-${index}`, {
           strings: [photoCaptions[index]],
           typeSpeed: 45,
-          showCursor: false,
-          onComplete: () => {
-            setTimeout(() => {
-              unblurPolaroidSequentially(index + 1);
-            }, 1000);
-          }
+          showCursor: false
         });
-      } else {
+      }
+
+      // Confetti burst for unlocking photo
+      if (typeof confetti !== 'undefined') {
+        confetti({ particleCount: 35, spread: 60, origin: { y: 0.6 } });
+      }
+
+      unlockedPhotosCount++;
+
+      // When all 4 photos are unlocked, reveal Go to Quiz button!
+      if (unlockedPhotosCount >= 4) {
         setTimeout(() => {
-          unblurPolaroidSequentially(index + 1);
-        }, 1200);
+          const goToQuiz = document.getElementById('goToQuizBtn');
+          if (goToQuiz) {
+            goToQuiz.style.display = 'inline-flex';
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(goToQuiz, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 });
+            }
+          }
+          if (typeof confetti !== 'undefined') {
+            confetti({ particleCount: 120, spread: 100, origin: { y: 0.7 } });
+          }
+        }, 800);
       }
     });
-  } else {
-    unblurPolaroidSequentially(index + 1);
-  }
+  });
 }
+
+setupClickToUnlockPhotos();
 
 /* ==========================
    PARTICLES & FIREFLIES
@@ -320,13 +251,13 @@ function createFireflies() {
 createFireflies();
 
 /* ==========================
-   BUTTON CONTROLS
+   BUTTON CONTROLS & NAVIGATION
 ========================== */
 
 if (startBtn) {
   startBtn.addEventListener('click', () => {
     playMusic();
-    triggerScrapbookSequence();
+    smoothScrollToSection("scrapbook");
   });
 }
 
@@ -353,10 +284,9 @@ musicBtn.addEventListener('click', () => {
   }
 });
 
-const goToQuizBtn = document.getElementById('goToQuizBtn');
 if (goToQuizBtn) {
   goToQuizBtn.addEventListener('click', () => {
-    autoScrollTo("quizSection", 1500);
+    smoothScrollToSection("quizSection");
   });
 }
 
@@ -392,10 +322,10 @@ function renderQuiz() {
       card.innerHTML = `
         <h3>Question ${index + 1} of ${quizData.length}</h3>
         <h2>${q.question}</h2>
-        <textarea id="typedAnswerInput" class="quiz-textarea" placeholder="Type your message here Didi..."></textarea>
+        <textarea id="typedAnswerInput-${index}" class="quiz-textarea" placeholder="${q.placeholder || 'Type your message here Didi...'}"></textarea>
         <br>
-        <button id="submitTypedAnswerBtn" class="quiz-submit-btn">
-          Submit Message 💌 <i class="fa-solid fa-paper-plane"></i>
+        <button class="quiz-submit-btn submit-text-btn" data-question="${index}">
+          Submit Answer 💌 <i class="fa-solid fa-paper-plane"></i>
         </button>
       `;
     }
@@ -403,17 +333,43 @@ function renderQuiz() {
     container.appendChild(card);
   });
 
-  // Attach MCQ option clicks
   document.querySelectorAll('.quiz-option').forEach(btn => {
     btn.addEventListener('click', handleQuizAnswer);
   });
 
-  // Attach Text submit click
-  const submitTextBtn = document.getElementById('submitTypedAnswerBtn');
-  if (submitTextBtn) {
-    submitTextBtn.addEventListener('click', handleTypedQuestionSubmit);
-  }
+  document.querySelectorAll('.submit-text-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const questionIdx = parseInt(e.currentTarget.dataset.question);
+      const inputEl = document.getElementById(`typedAnswerInput-${questionIdx}`);
+      const userText = inputEl ? inputEl.value.trim() : '';
+
+      if (userText.length > 0) {
+        sendTelegramMessage(`Question ${questionIdx + 1} (${quizData[questionIdx].question}): ${userText}`);
+      }
+
+      if (typeof confetti !== 'undefined') {
+        confetti({ particleCount: 80, spread: 80, origin: { y: 0.6 } });
+      }
+
+      const card = document.getElementById('quizCard-' + questionIdx);
+      currentQuestion++;
+
+      if (currentQuestion < quizData.length) {
+        card.style.display = 'none';
+        const nextCard = document.getElementById('quizCard-' + currentQuestion);
+        nextCard.style.display = 'block';
+        if (typeof gsap !== 'undefined') {
+          gsap.fromTo(nextCard, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+        }
+      } else {
+        if (resultModal) {
+          resultModal.classList.add('active');
+        }
+      }
+    });
+  });
 }
+
 
 function handleQuizAnswer(e) {
   const btn = e.target;
@@ -462,7 +418,6 @@ function handleTypedQuestionSubmit() {
     confetti({ particleCount: 100, spread: 100, origin: { y: 0.6 } });
   }
 
-  // Show Result Modal -> leads to Puzzle Page
   if (resultModal) {
     resultModal.classList.add('active');
   }
@@ -556,7 +511,7 @@ if (resetPuzzleBtn) {
 initPuzzleBoard();
 
 /* ==========================
-   MODAL ACTIONS (GO TO PUZZLE & WIN SURPRISE)
+   MODAL ACTIONS
 ========================== */
 
 if (goToPuzzleBtn) {
@@ -564,9 +519,8 @@ if (goToPuzzleBtn) {
     if (resultModal) {
       resultModal.classList.remove('active');
     }
-    autoScrollTo("puzzleSection", 4500, () => {
-      initPuzzleBoard();
-    });
+    smoothScrollToSection("puzzleSection");
+    initPuzzleBoard();
   });
 }
 
@@ -580,14 +534,15 @@ if (winSurpriseBtn) {
       confetti({ particleCount: 200, spread: 140, origin: { y: 0.4 } });
     }
 
-    autoScrollTo("letterSection", 4500, () => {
+    smoothScrollToSection("letterSection");
+    setTimeout(() => {
       startTypedLetter();
-    });
+    }, 600);
   });
 }
 
 /* ==========================
-   TYPED LETTER
+   TYPED LETTER WITH AUTO-FOLLOW SCROLL
 ========================== */
 
 function startTypedLetter() {
@@ -596,12 +551,22 @@ function startTypedLetter() {
 
   typedTarget.innerHTML = '';
   if (typedLetterInstance) typedLetterInstance.destroy();
+  if (letterScrollInterval) clearInterval(letterScrollInterval);
+
+  // Smooth auto-follow scroll ONLY while the letter is typing out
+  letterScrollInterval = setInterval(() => {
+    const rect = typedTarget.getBoundingClientRect();
+    if (rect.bottom > window.innerHeight - 120) {
+      const targetY = rect.bottom + window.pageYOffset - window.innerHeight + 160;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    }
+  }, 400);
 
   const letterText = `Dear Nisha Didi ❤️,
 
-Happy Raksha Bandhan!
+First of all, Happy Raksha Bandhan! 🌸
 
-I honestly don't know how to put everything I feel into words...
+I honestly don't know how to put all my feelings into words...
 
 We don't share the same blood, but you know what?
 That never mattered. Not even for a single second.
@@ -609,20 +574,25 @@ That never mattered. Not even for a single second.
 You became my Didi not by birth, but by love.
 And honestly? That's a bond even stronger than blood.
 
+Sometimes I misunderstand you, and I am truly sorry for that.
+But you were always there for me.
 Every time I needed someone, you were there.
 Every time I felt lost, you showed me the way.
 You are not just a sister — you are my strength,
-my protector, my guide.
+my protector, who always guided and supported me.
 
 This might be our last Raksha Bandhan together like this...
-And that thought alone makes my heart heavy.
+Our bond of 5 beautiful years means everything to me,
+and that thought alone always makes my heart heavy.
 But no matter where life takes us,
 no distance, no time, nothing can ever break what we have.
+I grew from a child into an adult under your love & support.
 
 You'll always be my Didi. Always. ❤️
 
-Thank you for being in my Life.
+Thank you for being in my life.
 Thank you for being YOU.
+You know <3000! 💖
 
 Happy Raksha Bandhan ❤️
 
@@ -636,6 +606,11 @@ Happy Raksha Bandhan ❤️
       showCursor: true,
       cursorChar: "❤️",
       onComplete: () => {
+        if (letterScrollInterval) {
+          clearInterval(letterScrollInterval);
+          letterScrollInterval = null;
+        }
+
         const footer = document.getElementById('letterFooter');
         if (footer) {
           footer.style.display = 'block';
@@ -643,13 +618,13 @@ Happy Raksha Bandhan ❤️
             gsap.from(footer, { opacity: 0, y: 20, duration: 0.6 });
           }
         }
-
-        setTimeout(() => {
-          triggerCertificateSection();
-        }, 5000);
       }
     });
   } catch (e) {
+    if (letterScrollInterval) {
+      clearInterval(letterScrollInterval);
+      letterScrollInterval = null;
+    }
     typedTarget.textContent = letterText;
     const footer = document.getElementById('letterFooter');
     if (footer) footer.style.display = 'block';
@@ -657,43 +632,15 @@ Happy Raksha Bandhan ❤️
 }
 
 /* ==========================
-   CONTINUE BUTTON & CERTIFICATE / ENDING FLOW
+   CONTINUE BUTTON & ENDING
 ========================== */
-
-function triggerCertificateSection() {
-  autoScrollTo("certificateSection", 4500, () => {
-    if (typeof confetti !== 'undefined') {
-      const duration = 2500;
-      const end = Date.now() + duration;
-      const frame = () => {
-        confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 } });
-        confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 } });
-        if (Date.now() < end) requestAnimationFrame(frame);
-      };
-      frame();
-    }
-
-    setTimeout(() => {
-      triggerEndingSection();
-    }, 6000);
-  });
-}
-
-function triggerEndingSection() {
-  autoScrollTo("endingSection", 5000, () => {
-    isAutoScrollEnabled = false;
-    stopAutoScrollAnimation();
-    if (touchResumeTimer) {
-      clearTimeout(touchResumeTimer);
-      touchResumeTimer = null;
-    }
-    currentPendingStep = null;
-  });
-}
 
 if (continueBtn) {
   continueBtn.addEventListener('click', () => {
-    triggerCertificateSection();
+    smoothScrollToSection("certificateSection");
+    if (typeof confetti !== 'undefined') {
+      confetti({ particleCount: 150, spread: 120, origin: { y: 0.5 } });
+    }
   });
 }
 
@@ -703,21 +650,26 @@ if (continueBtn) {
 
 if (restartBtn) {
   restartBtn.addEventListener('click', () => {
-    isAutoScrollEnabled = true;
-    if (touchResumeTimer) {
-      clearTimeout(touchResumeTimer);
-      touchResumeTimer = null;
-    }
-    currentPendingStep = null;
-
     quizScore = 0;
     currentQuestion = 0;
-    
+    unlockedPhotosCount = 0;
+
+    if (letterScrollInterval) {
+      clearInterval(letterScrollInterval);
+      letterScrollInterval = null;
+    }
+
+    // Lock polaroids & clear captions
     document.querySelectorAll('.polaroid').forEach((p, idx) => {
       p.className = 'polaroid locked';
       const cap = document.getElementById(`caption-${idx}`);
       if (cap) cap.innerHTML = '';
+      const lockOverlay = document.getElementById(`lock-${idx}`);
+      if (lockOverlay) lockOverlay.classList.remove('unlocked');
     });
+
+    const goToQuiz = document.getElementById('goToQuizBtn');
+    if (goToQuiz) goToQuiz.style.display = 'none';
 
     renderQuiz();
     initPuzzleBoard();
@@ -731,9 +683,10 @@ if (restartBtn) {
     const letterFooter = document.getElementById('letterFooter');
     if (letterFooter) letterFooter.style.display = 'none';
 
-    autoScrollTo("hero", 3500, () => {
+    smoothScrollToSection("hero");
+    setTimeout(() => {
       startHeroTypewriter();
-    });
+    }, 600);
   });
 }
 

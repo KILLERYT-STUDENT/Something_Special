@@ -476,6 +476,12 @@ transform:translateY(-8px) rotate(-1deg);
 box-shadow:0 30px 60px rgba(0,0,0,.18);
 }
 
+.polaroid-inner{
+position:relative;
+overflow:hidden;
+border-radius:14px;
+}
+
 .polaroid-inner img{
 width:100%;
 height:auto;
@@ -498,6 +504,65 @@ font-weight:700;
 min-height:36px;
 }
 
+/* Polaroid Lock Overlay */
+.lock-overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+border-radius:14px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:12px;
+color:#ffffff;
+cursor:pointer;
+z-index:10;
+transition:opacity 0.6s ease, transform 0.6s ease;
+padding:20px;
+}
+
+.lock-overlay i{
+font-size:38px;
+color:#ffd86f;
+animation:lockPulse 1.8s infinite;
+filter:drop-shadow(0 4px 12px rgba(255,216,111,0.6));
+}
+
+.lock-overlay span{
+font-family:'Poppins',sans-serif;
+font-size:15px;
+font-weight:600;
+text-align:center;
+text-shadow:0 2px 8px rgba(0,0,0,0.6);
+letter-spacing:0.5px;
+background:rgba(255,255,255,0.18);
+padding:8px 18px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,0.3);
+}
+
+.lock-overlay:hover{
+background:rgba(0,0,0,0.35);
+}
+
+.lock-overlay:hover i{
+transform:scale(1.15);
+}
+
+.lock-overlay.unlocked{
+opacity:0;
+pointer-events:none;
+transform:scale(1.1);
+}
+
+@keyframes lockPulse{
+0%, 100%{ transform:scale(1); }
+50%{ transform:scale(1.12); }
+}
+
 /* Polaroid Blur / Unblur States */
 .polaroid.locked img{
 filter:blur(14px) brightness(0.85);
@@ -514,6 +579,7 @@ transform:scale(1);
 filter:blur(0px) brightness(1.02);
 transform:scale(1);
 }
+
 
 /* Modal Popup Overlay */
 .modal-overlay{
