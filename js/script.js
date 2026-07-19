@@ -37,22 +37,22 @@ function sendTelegramMessage(text) {
 const quizData = [
   {
     type: "text",
-    question: "What does I do the most? 🤔",
+    question: "Whats Your Favorite memory of us growing up together?",
     placeholder: "Type what you think I do the most Didi..."
   },
   {
     type: "text",
-    question: "What's special about Me? 💭",
+    question: "What's so special about me?",
     placeholder: "Type what you think is special about me..."
   },
   {
     type: "text",
-    question: "What is the bond between us? 🤝",
+    question: "What thing that you have always wanted to tell me, but never did?",
     placeholder: "Type what our bond means to you..."
   },
   {
     type: "text",
-    question: "What is one special message or memory you want to say to me? 💬",
+    question: "Is there any special message for me? if you could give advice, what would be?",
     placeholder: "Type your message here Didi..."
   }
 ];
