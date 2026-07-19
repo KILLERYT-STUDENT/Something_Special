@@ -104,52 +104,24 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     </div>
 
     <h1>
-
         Happy Raksha Bandhan
-
     </h1>
 
     <h2>
-
         Nisha Didi ❤️
-
     </h2>
 
-    <p>
-
-        Some bonds are not by blood...
-
-        <br><br>
-
-        They are by heart.
-
-        <br><br>
-
-        You are my Didi, not because we share the same blood,
-        but because we share the same soul.
-
-    </p>
+    <div id="typedHero" class="hero-paragraph"></div>
 
     <button id="beginBtn">
-
         Begin Our Journey
-
         <i class="fa-solid fa-arrow-down"></i>
-
     </button>
-
 </div>
 
 <div class="scrollDown">
-
-    <span>
-
-        Scroll
-
-    </span>
-
+    <span>Scroll</span>
     <i class="fa-solid fa-angles-down"></i>
-
 </div>
 
 </section>
@@ -160,63 +132,41 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <section id="scrapbook">
 
-
 <div class="scrapbook-wrapper">
 
     <div class="title">
-
         <h2>Your Precious Memories 📸</h2>
-
         <p>Every picture holds a story ✨</p>
-
     </div>
 
     <div class="polaroid-grid">
 
-        <div class="polaroid" data-index="0">
-
+        <div class="polaroid locked" data-index="0" id="polaroid-0">
             <div class="polaroid-inner">
-
                 <img src="assets/images/Image-1.jpeg" alt="Didi's Personality">
-
-                <p class="polaroid-caption">The Most Stylish Didi 😎</p>
-
+                <p class="polaroid-caption" id="caption-0"></p>
             </div>
-
         </div>
 
-        <div class="polaroid" data-index="1">
-
+        <div class="polaroid locked" data-index="1" id="polaroid-1">
             <div class="polaroid-inner">
-
                 <img src="assets/images/Image-2.jpeg" alt="Didi's Beauty">
-
-                <p class="polaroid-caption">Beauty Beyond Words 🌙</p>
-
+                <p class="polaroid-caption" id="caption-1"></p>
             </div>
-
         </div>
 
-        <div class="polaroid" data-index="2">
-
+        <div class="polaroid locked" data-index="2" id="polaroid-2">
             <div class="polaroid-inner">
-
                 <img src="assets/images/Image-3.jpeg" alt="Childhood">
-
-                <p class="polaroid-caption">The Cutest Little Angel 👶</p>
-
+                <p class="polaroid-caption" id="caption-2"></p>
             </div>
-
         </div>
 
-        <div class="polaroid" data-index="3">
-
+        <div class="polaroid locked" data-index="3" id="polaroid-3">
             <div class="polaroid-inner">
-
                 <img src="assets/images/Image-4.jpeg" alt="Together">
-
-                <p class="polaroid-caption">Together Forever 🤝</p>
-
+                <p class="polaroid-caption" id="caption-3"></p>
+            </div>
         </div>
 
     </div>
@@ -237,37 +187,37 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <section id="quizSection">
 
-
 <div class="quiz-wrapper">
 
     <div class="title">
-
         <h2>How Well Do You Know Me? 🤔</h2>
-
         <p>Answer these questions to unlock a surprise!</p>
-
     </div>
 
     <div id="quizContainer"></div>
 
-    <div id="quizResult">
+</div>
 
-        <div class="result-card">
+</section>
 
-            <h2 id="resultEmoji">🎉</h2>
+<!-- ===========================
+        PUZZLE SECTION
+=========================== -->
 
-            <h3 id="resultTitle">Amazing!</h3>
+<section id="puzzleSection">
 
-            <p id="scoreText"></p>
+<div class="puzzle-wrapper">
 
-            <button id="unlockLetterBtn">
+    <div class="title">
+        <h2>Memory Jigsaw Challenge 🧩</h2>
+        <p>Click two tiles to swap them & complete our picture! ✨</p>
+    </div>
 
-                Unlock Your Letter 💌
-
-            </button>
-
-        </div>
-
+    <div class="puzzle-card">
+        <div id="puzzleBoard"></div>
+        <button id="resetPuzzleBtn" class="puzzle-reset-btn">
+            <i class="fa-solid fa-rotate-left"></i> Shuffle Again
+        </button>
     </div>
 
 </div>
@@ -275,8 +225,39 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </section>
 
 <!-- ===========================
+        QUIZ RESULT MODAL
+=========================== -->
+
+<div id="resultModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2 id="modalEmoji">🎉</h2>
+        <h3 id="modalTitle">Awesome Job!</h3>
+        <p id="modalSubtext">You completed the questions! Click below to move to the Memory Puzzle 🧩</p>
+        <button id="goToPuzzleBtn">
+            Go to Puzzle 🧩
+        </button>
+    </div>
+</div>
+
+<!-- ===========================
+        PUZZLE WIN MODAL
+=========================== -->
+
+<div id="winModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2>🏆 🎉</h2>
+        <h3>Congratulations You WON!</h3>
+        <p>You solved the memory puzzle! Click below for your SURPRISE 💌</p>
+        <button id="winSurpriseBtn">
+            SURPRISE 🎁
+        </button>
+    </div>
+</div>
+
+<!-- ===========================
          LETTER
 =========================== -->
+
 
 <section id="letterSection">
 

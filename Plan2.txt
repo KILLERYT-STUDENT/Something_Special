@@ -1,0 +1,41 @@
+Yo Buddy This is a Update in the whole we bI am Writing this after the Completing the project and thinking ideas for 3 hours.
+ 
+                   These are in short form
+
+
+What to update :-
+1st Page Desgin:
+Hey! Didi, So its Finally Raksha Bandhan, Wishing, A Line Paragraph (Here i will write a 4 lines "It iwill be in the Type wriiter effect")
+
+2nd Page:
+Here are some yours Pictures
+
+3rd Page:
+What you know about me 
+
+4th Page:
+Letter Long Paragraph
+
+5th Footer Page end with a Quote, Like that the currect in the web, it is also good.
+
+      Now here are Explanation how it worked.
+
+Now listen the whole web will be like a Video but web will be resopense able
+Everthing will be Automated and Auto Scroll Feature
+I am Obssed with Type writter effect(i dont know why but i love that effect)
+
+The link i will send her of the web, When she will click on the link to open the web.
+
+- The Heart Loading animation then automatically first page will open writing content, in type writter effect.
+
+- When 1st page complete it will automatically scrolls to the 2nd page and "all the imagese will be already blured like a locked image" they will now unblured one by one also the word written under the image.(Like type writter effect).
+
+- One by one image unlock and web will slowly scrolls
+
+- After 2nd page, Now its auto scroll to the 3rd page at the auto scroll stop at 3rd page beacuse there will be 3 question that she had to answer.
+
+- Then she will answer of those 3 questions, she need to answer because to unlock the Letter, its compulsary to answer the question. Question Like MCQ, Just only to Choose, when she choose all 3 MCQ answer then down side of those 3 question there will be a button that submit your answer, when she submit, then load a result like pop up and write you score 3 out of 3, click ont the button SURPRISE, when she click transfer her to Letter Page.
+
+- Now when she Click on the SURPRISE button, the auto scroll start again and scroll slowly to the Letter page and letter page Containt which i will provide letter, will automatically start appearing like type writter effect, maybe it will be a big paragraph because it is a letter.
+
+Listen Dont start anything to change or work, before discussing with me properly and after conformation you have to start.

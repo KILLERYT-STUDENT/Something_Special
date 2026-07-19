@@ -1,0 +1,19 @@
+# 📑 Plan 3 — Interactive Puzzle & Live Telegram Question Integration
+
+## 🎯 Plan Overview
+
+1. **Question 4 (Typed Response Question)**:
+   - Added as a 4th question in the Quiz section where Didi types her response in a beautiful text box.
+   - Submitting sends her text live to Naveen's Telegram bot (`@Rakhi_Message_Bot`) on Chat ID `5816487553`.
+
+2. **3x3 Photo Jigsaw Puzzle Page**:
+   - Placed right after the Quiz section.
+   - Features a 3x3 grid image swap/sliding puzzle of a special photo.
+   - When Didi solves the puzzle, celebration effects fire.
+
+3. **Win Modal & Letter Unlock**:
+   - A celebration popup appears: *"Congratulations You WON! Click the button for SURPRISE 🎁"*.
+   - Clicking SURPRISE smoothly auto-scrolls down to the Heartfelt Letter page.
+
+4. **Future Additions**:
+   - Reserve space for further mini-games or memory sections as the 30-day countdown progresses.

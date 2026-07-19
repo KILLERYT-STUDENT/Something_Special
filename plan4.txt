@@ -1,0 +1,10 @@
+Its Plan 4 with Updates
+
+Want to say that disable auto scroller, but not fully
+it will be only on the Letter page beacuse text are wrritng but it was not scrolling, so make it
+and on the image page also disable there, new idea for that
+you know we laready blured the image, now we just put a lock emoji and write there to click me on everyphoto, and wyou know when she click what to do 
+
+one more thing i want to say that, 
+she dont the that this web is like a video, so when she open the web, she will start scrolling the web, thats why i am saying to close auto scroller, due this reason autoscroller get glitch, and if autoscroller glitch whole web get glitch
+also, If she open first page and scroll the it will show 2nd page untill the 1st page completely done with it, same thing like all pages

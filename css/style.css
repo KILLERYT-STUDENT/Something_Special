@@ -495,7 +495,296 @@ font-family:'Caveat',cursive;
 font-size:24px;
 color:var(--pink-deep);
 font-weight:700;
+min-height:36px;
 }
+
+/* Polaroid Blur / Unblur States */
+.polaroid.locked img{
+filter:blur(14px) brightness(0.85);
+transition:filter 1.2s ease, transform 0.6s ease;
+transform:scale(0.96);
+}
+
+.polaroid.unblurring img{
+filter:blur(0px) brightness(1.02);
+transform:scale(1);
+}
+
+.polaroid.unlocked img{
+filter:blur(0px) brightness(1.02);
+transform:scale(1);
+}
+
+/* Modal Popup Overlay */
+.modal-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.65);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transition:opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.modal-overlay.active{
+opacity:1;
+visibility:visible;
+pointer-events:all;
+}
+
+.modal-content{
+background:#ffffff;
+border-radius:30px;
+padding:50px 40px;
+max-width:500px;
+width:90%;
+text-align:center;
+box-shadow:0 30px 70px rgba(255,60,145,.35);
+transform:scale(0.8);
+transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+border:2px solid rgba(255,79,161,.3);
+}
+
+.modal-overlay.active .modal-content{
+transform:scale(1);
+}
+
+#modalEmoji{
+font-size:64px;
+margin-bottom:10px;
+}
+
+#modalTitle{
+font-family:'Cormorant Garamond',serif;
+font-size:32px;
+color:var(--pink);
+margin-bottom:12px;
+}
+
+#modalSubtext{
+font-size:17px;
+color:#555;
+margin-bottom:25px;
+line-height:1.6;
+}
+
+#surpriseBtn{
+border:none;
+padding:18px 45px;
+border-radius:60px;
+font-size:20px;
+font-weight:700;
+cursor:pointer;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg, #ff3c91, #a76dff);
+color:white;
+box-shadow:0 15px 35px rgba(255,60,145,.4);
+transition:.35s;
+display:inline-flex;
+align-items:center;
+gap:12px;
+animation:surprisePulse 1.8s infinite;
+}
+
+#surpriseBtn:hover{
+transform:scale(1.08);
+box-shadow:0 20px 45px rgba(255,60,145,.6);
+}
+
+@keyframes surprisePulse{
+0%,100%{ transform:scale(1); }
+50%{ transform:scale(1.05); }
+}
+
+/* =====================================================
+   PUZZLE SECTION
+===================================================== */
+
+#puzzleSection{
+background:linear-gradient(135deg, #f0f4ff, #ffe7f4, #fff3dc);
+background-size:400% 400%;
+animation:gradientShift 12s ease infinite;
+padding:100px 5%;
+}
+
+.puzzle-wrapper{
+width:100%;
+max-width:700px;
+position:relative;
+z-index:2;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.puzzle-card{
+background:#ffffff;
+border:2px solid rgba(255,79,161,.2);
+border-radius:28px;
+padding:40px 30px;
+box-shadow:0 20px 50px rgba(0,0,0,.1);
+text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:25px;
+max-width:440px;
+width:100%;
+}
+
+#puzzleBoard{
+width:330px;
+height:330px;
+display:grid;
+grid-template-columns:repeat(3, 1fr);
+grid-template-rows:repeat(3, 1fr);
+gap:4px;
+background:rgba(255,79,161,0.15);
+padding:6px;
+border-radius:18px;
+box-shadow:inset 0 4px 12px rgba(0,0,0,0.1);
+touch-action:none;
+}
+
+.puzzle-tile{
+width:100%;
+height:100%;
+background-size:330px 330px;
+background-repeat:no-repeat;
+border-radius:10px;
+cursor:pointer;
+transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+border:2px solid transparent;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+user-select:none;
+}
+
+.puzzle-tile:hover{
+transform:scale(1.04);
+z-index:2;
+}
+
+.puzzle-tile.selected{
+border-color:#ff3c91;
+box-shadow:0 0 18px rgba(255,60,145,0.8);
+transform:scale(1.08);
+z-index:3;
+animation:pulseSelected 1.2s infinite ease-in-out;
+}
+
+@keyframes pulseSelected{
+0%, 100%{ box-shadow:0 0 14px rgba(255,60,145,0.7); }
+50%{ box-shadow:0 0 24px rgba(255,60,145,1); }
+}
+
+.puzzle-reset-btn{
+border:none;
+padding:12px 28px;
+border-radius:50px;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+font-family:'Poppins',sans-serif;
+background:rgba(255,79,161,0.12);
+color:var(--pink-deep);
+transition:.3s;
+display:inline-flex;
+align-items:center;
+gap:8px;
+}
+
+.puzzle-reset-btn:hover{
+background:rgba(255,79,161,0.22);
+transform:scale(1.04);
+}
+
+#goToPuzzleBtn, #winSurpriseBtn{
+border:none;
+padding:18px 45px;
+border-radius:60px;
+font-size:20px;
+font-weight:700;
+cursor:pointer;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg, #ff3c91, #a76dff);
+color:white;
+box-shadow:0 15px 35px rgba(255,60,145,.4);
+transition:.35s;
+display:inline-flex;
+align-items:center;
+gap:12px;
+animation:surprisePulse 1.8s infinite;
+}
+
+#goToPuzzleBtn:hover, #winSurpriseBtn:hover{
+transform:scale(1.08);
+box-shadow:0 20px 45px rgba(255,60,145,.6);
+}
+
+/* Question 4 Text Area Input */
+.quiz-textarea{
+width:100%;
+min-height:110px;
+border:2px solid rgba(255,79,161,.3);
+border-radius:18px;
+padding:16px 20px;
+font-size:16px;
+font-family:'Poppins',sans-serif;
+color:#222;
+resize:vertical;
+outline:none;
+transition:border-color 0.3s ease, box-shadow 0.3s ease;
+margin-bottom:20px;
+background:#fffafc;
+}
+
+.quiz-textarea:focus{
+border-color:var(--pink-deep);
+box-shadow:0 0 15px rgba(255,60,145,0.25);
+}
+
+.quiz-submit-btn{
+border:none;
+padding:14px 36px;
+border-radius:50px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg, var(--pink-deep), var(--pink2));
+color:white;
+box-shadow:var(--shadow-pink);
+transition:.35s;
+display:inline-flex;
+align-items:center;
+gap:10px;
+}
+
+.quiz-submit-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 15px 35px rgba(255,60,145,0.45);
+}
+
+
+/* Typewriter Cursor */
+.typed-cursor{
+color:var(--pink-deep);
+font-weight:bold;
+font-size:1.1em;
+animation:typedBlink 0.7s infinite;
+}
+
+@keyframes typedBlink{
+0%,100%{ opacity:1; }
+50%{ opacity:0; }
+}
+
 
 /* =====================================================
    QUIZ SECTION
@@ -1054,7 +1343,9 @@ max-width:320px;
 }
 
 .polaroid-inner img{
-height:220px;
+height:auto;
+max-height:380px;
+object-fit:contain;
 }
 
 .quiz-options{
