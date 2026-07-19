@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A heartfelt Raksha Bandhan gift for Nisha Didi — from her brother Naveen, with love.">
+
+<title>Happy Raksha Bandhan — Nisha Didi ❤️</title>
+
+<!-- ===========================
+        GOOGLE FONTS
+=========================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ===========================
+            ICONS
+=========================== -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- ===========================
+             CSS
+=========================== -->
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<!-- ===========================
+          LOADER
+=========================== -->
+
+<div id="loader">
+
+    <div class="loader-heart">
+
+        ❤️
+
+    </div>
+
+    <h2>
+
+        Preparing Something Special for You Didi...
+
+    </h2>
+
+    <div class="loader-bar">
+
+        <div class="loader-fill"></div>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+          MUSIC
+=========================== -->
+
+<audio id="bgMusic" loop>
+
+    <source src="assets/audio/song.mp3" type="audio/mpeg">
+
+</audio>
+
+<button id="musicBtn">
+
+    <i class="fa-solid fa-music"></i>
+
+    <span>Music</span>
+
+</button>
+
+<!-- ===========================
+      FLOATING PARTICLES
+=========================== -->
+
+<div id="particles"></div>
+
+<!-- ===========================
+          HERO
+=========================== -->
+
+<section id="hero" class="active">
+
+<div class="gradient gradient1"></div>
+<div class="gradient gradient2"></div>
+<div class="gradient gradient3"></div>
+
+<div class="hero-content">
+
+    <div class="hero-tag">
+
+        ✨ Raksha Bandhan ✨
+
+    </div>
+
+    <h1>
+
+        Happy Raksha Bandhan
+
+    </h1>
+
+    <h2>
+
+        Nisha Didi ❤️
+
+    </h2>
+
+    <p>
+
+        Some bonds are not by blood...
+
+        <br><br>
+
+        They are by heart.
+
+        <br><br>
+
+        You are my Didi, not because we share the same blood,
+        but because we share the same soul.
+
+    </p>
+
+    <button id="beginBtn">
+
+        Begin Our Journey
+
+        <i class="fa-solid fa-arrow-down"></i>
+
+    </button>
+
+</div>
+
+<div class="scrollDown">
+
+    <span>
+
+        Scroll
+
+    </span>
+
+    <i class="fa-solid fa-angles-down"></i>
+
+</div>
+
+</section>
+
+<!-- ===========================
+        SCRAPBOOK
+=========================== -->
+
+<section id="scrapbook">
+
+
+<div class="scrapbook-wrapper">
+
+    <div class="title">
+
+        <h2>Your Precious Memories 📸</h2>
+
+        <p>Every picture holds a story ✨</p>
+
+    </div>
+
+    <div class="polaroid-grid">
+
+        <div class="polaroid" data-index="0">
+
+            <div class="polaroid-inner">
+
+                <img src="assets/images/Image-1.jpeg" alt="Didi's Personality">
+
+                <p class="polaroid-caption">The Most Stylish Didi 😎</p>
+
+            </div>
+
+        </div>
+
+        <div class="polaroid" data-index="1">
+
+            <div class="polaroid-inner">
+
+                <img src="assets/images/Image-2.jpeg" alt="Didi's Beauty">
+
+                <p class="polaroid-caption">Beauty Beyond Words 🌙</p>
+
+            </div>
+
+        </div>
+
+        <div class="polaroid" data-index="2">
+
+            <div class="polaroid-inner">
+
+                <img src="assets/images/Image-3.jpeg" alt="Childhood">
+
+                <p class="polaroid-caption">The Cutest Little Angel 👶</p>
+
+            </div>
+
+        </div>
+
+        <div class="polaroid" data-index="3">
+
+            <div class="polaroid-inner">
+
+                <img src="assets/images/Image-4.jpeg" alt="Together">
+
+                <p class="polaroid-caption">Together Forever 🤝</p>
+
+        </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:50px;">
+        <button id="goToQuizBtn" style="border:none; padding:16px 36px; border-radius:50px; font-size:17px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif; background:linear-gradient(135deg, var(--pink-deep), var(--pink2)); color:white; box-shadow:var(--shadow-pink); transition:.35s; display:inline-flex; align-items:center; gap:10px;">
+            Go to Quiz 🤔 <i class="fa-solid fa-arrow-down"></i>
+        </button>
+    </div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+           QUIZ
+=========================== -->
+
+<section id="quizSection">
+
+
+<div class="quiz-wrapper">
+
+    <div class="title">
+
+        <h2>How Well Do You Know Me? 🤔</h2>
+
+        <p>Answer these questions to unlock a surprise!</p>
+
+    </div>
+
+    <div id="quizContainer"></div>
+
+    <div id="quizResult">
+
+        <div class="result-card">
+
+            <h2 id="resultEmoji">🎉</h2>
+
+            <h3 id="resultTitle">Amazing!</h3>
+
+            <p id="scoreText"></p>
+
+            <button id="unlockLetterBtn">
+
+                Unlock Your Letter 💌
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+         LETTER
+=========================== -->
+
+<section id="letterSection">
+
+
+<div class="letter-wrapper">
+
+    <div class="letter-card">
+
+        <div class="letter-header">
+
+            <i class="fa-solid fa-envelope-open-text"></i>
+
+            <h2>A Letter From My Heart</h2>
+
+        </div>
+
+        <div id="typedLetter"></div>
+
+        <div class="letter-footer" id="letterFooter" style="display:none;">
+
+            <button id="continueBtn">
+
+                Continue Our Story
+
+                <i class="fa-solid fa-arrow-down"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+       CERTIFICATE
+=========================== -->
+
+<section id="certificateSection">
+
+<div class="gradient gradient2"></div>
+<div class="gradient gradient3"></div>
+
+<div class="certificate-wrapper">
+
+    <div class="certificate-card">
+
+        <div class="cert-border">
+
+            <div class="cert-stars">⭐ ⭐ ⭐</div>
+
+            <h3 class="cert-subtitle">Official Certificate</h3>
+
+            <h2 class="cert-title">Best Sister Award 🏆</h2>
+
+            <div class="cert-divider"></div>
+
+            <p class="cert-presented">This certificate is proudly presented to</p>
+
+            <h2 class="cert-name">Nisha Didi</h2>
+
+            <div class="cert-titles">
+
+                <span>🌸 Best Sister</span>
+
+                <span>💪 Strongest Bond</span>
+
+                <span>❤️ Heart's Family</span>
+
+            </div>
+
+            <div class="cert-divider"></div>
+
+            <p class="cert-footer">Awarded with all my love & respect</p>
+
+            <p class="cert-signed">— Naveen ❤️</p>
+
+            <p class="cert-date">Raksha Bandhan</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+         ENDING
+=========================== -->
+
+<section id="endingSection">
+
+<div id="fireflies"></div>
+
+<div class="ending-wrapper">
+
+    <div class="ending-content">
+
+        <div class="ending-quote">
+
+            <i class="fa-solid fa-quote-left"></i>
+
+            <p>
+
+                Family isn't always by blood.
+
+                <br>
+
+                Sometimes it's by heart.
+
+                <br><br>
+
+                And you Didi, Heart of Mine.
+
+            </p>
+
+            <i class="fa-solid fa-quote-right"></i>
+
+        </div>
+
+        <h2>Happy Raksha Bandhan ❤️</h2>
+
+        <p class="ending-subtitle">From your brother who loves you beyond words</p>
+
+        <p class="ending-name">— Naveen</p>
+
+        <button id="restartBtn">
+
+            Watch Again ❤️
+
+            <i class="fa-solid fa-rotate"></i>
+
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ===========================
+          SCRIPTS
+=========================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

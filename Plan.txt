@@ -1,0 +1,29 @@
+Hey Buddy, Today we are Going to work on a Project or a Gift, i dont know what i say but a web work.
+
+A web Project for My Didi, RakshaBandhan is Coming.
+May Be this RakshaBandhan will be our last RakshaBandhan, So i want to express my all Feeling, time spent, Emotion in Code's.
+We are also going to add Didi Pictures, is it in assest images
+
+The web Project for RakshaBandhan
+- HTML, - CSS, -JavaScript
+UI - Liquid Glass, Glass Morphism
+Colors - "All type of Pink", white, Black,
+
+Theme will Be Lovely
+
+Effect LIke - (Bubbles on Screen for Transisicon, Different type of Lovely Effects,)
+-Using Color Blending in BG 
+Loop the web, Infinite Scrool with smoothnes, But at least or max we are taking 6 to 7 pages.
+
+
+Now in assest/image there are 4 images, metioned 1,2,3 & 4
+1st Image, show didi Personality
+2nd Image SHow her Her Beauty
+3rd Image is her Child Image 
+4th Image Me and Her
+
+So use these image perfect 
+
+I have a Demo that What type of the web i want, i have the repo Link
+https://atifproyt.github.io/reetika-gift/
+I want same web But My Contents, Pleas 
