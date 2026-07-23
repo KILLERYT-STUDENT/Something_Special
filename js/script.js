@@ -37,8 +37,8 @@ function sendTelegramMessage(text) {
 const quizData = [
   {
     type: "text",
-    question: "Whats Your Favorite memory of us growing up together?",
-    placeholder: "Type what you think I do the most Didi..."
+    question: "What do You Like Most about Me? 🤔",
+    placeholder: "Type what you like most about me Didi..."
   },
   {
     type: "text",
@@ -47,8 +47,8 @@ const quizData = [
   },
   {
     type: "text",
-    question: "What thing that you have always wanted to tell me, but never did?",
-    placeholder: "Type what our bond means to you..."
+    question: "What is a Secret that You Want to Tell Me?.. But You Never Did! 🤝",
+    placeholder: "Type what you want to tell me..."
   },
   {
     type: "text",
@@ -581,12 +581,19 @@ Every time I felt lost, you showed me the way.
 You are not just a sister — you are my strength,
 my protector, who always guided and supported me.
 
-This might be our last Raksha Bandhan together like this...
 Our bond of 5 beautiful years means everything to me,
-and that thought alone always makes my heart heavy.
-But no matter where life takes us,
-no distance, no time, nothing can ever break what we have.
+This might be our last Raksha Bandhan together like this...
+and that thought alone always makes my heart heavy whenever
+i think about it.
 I grew from a child into an adult under your love & support.
+
+I am Obssed with You
+But the way you ignore... that Hurt ☹️ Deeply
+I also try to ignore... but don't know why i fail.
+I just start hating Me...
+
+May Be I am Excepted too Much
+So Sorry... 🙁
 
 You'll always be my Didi. Always. ❤️
 
@@ -603,6 +610,7 @@ Happy Raksha Bandhan ❤️
     typedLetterInstance = new Typed("#typedLetter", {
       strings: [letterText],
       typeSpeed: 28,
+      contentType: 'null',
       showCursor: true,
       cursorChar: "❤️",
       onComplete: () => {
