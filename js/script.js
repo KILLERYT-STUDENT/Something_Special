@@ -592,7 +592,7 @@ But the way you ignore... that Hurt ☹️ Deeply
 I also try to ignore... but don't know why i fail.
 I just start hating Me...
 
-May Be I am Excepted too Much
+May Be I have Excepted too Much
 So Sorry... 🙁
 
 You'll always be my Didi. Always. ❤️
@@ -603,13 +603,13 @@ You know <3000! 💖
 
 Happy Raksha Bandhan ❤️
 
-— Your Brother,
+— Your Little Brother,
    Naveen`;
 
   try {
     typedLetterInstance = new Typed("#typedLetter", {
       strings: [letterText],
-      typeSpeed: 28,
+      typeSpeed: 24,
       contentType: 'null',
       showCursor: true,
       cursorChar: "❤️",
@@ -705,7 +705,7 @@ if (restartBtn) {
 let easterEggClicks = 0;
 document.body.addEventListener('click', () => {
   easterEggClicks++;
-  if (easterEggClicks === 25) {
+  if (easterEggClicks === 20) {
     alert("❤️ Nisha Didi, you'll always be the best sister in the world! — Naveen 💖");
     if (typeof confetti !== 'undefined') {
       confetti({ particleCount: 300, spread: 180, origin: { y: 0.5 } });
