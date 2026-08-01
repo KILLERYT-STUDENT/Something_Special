@@ -110,7 +110,7 @@ function startHeroTypewriter() {
   typedHeroTarget.innerHTML = '';
   if (typedHeroInstance) typedHeroInstance.destroy();
 
-  const heroText = `So, Raksha Bandhan is finally here!^600<br><br>Here is a small gift, made with love, just for you...^800<br><br>Do you know why our bond is the best?<br>Because we share the same soul. ❤️`;
+  const heroText = `So, Raksha Bandhan is finally here!^600<br><br>Here is a small gift, made with love, just for you...^800<br><br> Just one thing, On the Music ❤️`;
 
   try {
     typedHeroInstance = new Typed("#typedHero", {
@@ -120,7 +120,7 @@ function startHeroTypewriter() {
       cursorChar: "✨"
     });
   } catch (e) {
-    typedHeroTarget.innerHTML = `So, Raksha Bandhan is finally here!<br><br>Here is a small gift, made with love, just for you...<br><br>Do you know why our bond is the best?<br>Because we share the same soul. ❤️`;
+    typedHeroTarget.innerHTML = `So, Raksha Bandhan is finally here!<br><br>Here is a small gift, made with love, just for you...<br><br> Just one thing, On the Music ❤️`;
   }
 }
 
